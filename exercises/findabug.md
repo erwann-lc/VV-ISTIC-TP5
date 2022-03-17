@@ -20,10 +20,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSORPage {
 
@@ -47,23 +45,15 @@ public class TestSORPage {
         webDriver.navigate().to("http://localhost:4200/create");
 
         try {
-            List<WebElement> allLinks = webDriver.findElements(By.tagName("a"));
-            WebElement button3 = null;
-            for (WebElement element : allLinks) {
-                if (element.getText().trim().contains("3")) {
-                    button3 = element;
-                    element.click();
-                    break;
-                }
-            }
-            if (button3 != null) {
-                SummaryPage page = new SummaryPage(webDriver);
-                assertFalse(page.title().trim().isEmpty());
-                assertFalse(page.place().trim().isEmpty());
-                assertFalse(page.description().trim().isEmpty());
-            } else {
-                fail("No button '3' found.");
-            }
+            WebElement button3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
+            button3.click();
+
+            SummaryPage page = new SummaryPage(webDriver);
+            WebElement span3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
+            assertEquals("rgba(0, 123, 255, 1)", span3.getCssValue("background-color"));
+            assertFalse(page.title().trim().isEmpty());
+            assertFalse(page.place().trim().isEmpty());
+            assertFalse(page.description().trim().isEmpty());
         } catch (ElementNotInteractableException e) {
             fail("Impossible to click on button '3'.");
         }
