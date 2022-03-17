@@ -20,10 +20,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -31,18 +28,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class TestSORPage {
 
     private static WebDriver webDriver;
-    private static Set<String> listPages;
-    private static String lastUrl;
-    private static String newUrl;
 
     @BeforeAll
     public static void setUp(){
-
-        listPages = new HashSet<>();
-
-        lastUrl = "";
-
-        newUrl = "";
 
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Erwann\\chromedriver_win32\\chromedriver.exe");
 
@@ -56,9 +44,7 @@ public class TestSORPage {
 
     @Test
     public void testClickButton3WithEmptyFields() {
-        // Go to wikipedia
-        newUrl = "http://localhost:4200/create";
-        webDriver.navigate().to(newUrl);
+        webDriver.navigate().to("http://localhost:4200/create");
 
         try {
             List<WebElement> allLinks = webDriver.findElements(By.tagName("a"));
