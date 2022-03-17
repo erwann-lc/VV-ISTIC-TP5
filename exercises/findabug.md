@@ -55,7 +55,7 @@ public class TestSORPage {
             assertFalse(page.place().trim().isEmpty());
             assertFalse(page.description().trim().isEmpty());
         } catch (ElementNotInteractableException e) {
-            fail("Impossible to click on button '3'.");
+            fail("Impossible to click on span '3'.");
         }
 
         webDriver.quit();
