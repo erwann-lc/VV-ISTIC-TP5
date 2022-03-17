@@ -16,7 +16,7 @@ Le bug trouvé est obtenu assez facilement. Lorsqu'on lance l'application et qu'
 
 ```java
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,8 +29,8 @@ public class TestSORPage {
 
     private static WebDriver webDriver;
 
-    @BeforeAll
-    public static void setUp(){
+    @BeforeEach
+    public void setUp(){
 
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Erwann\\chromedriver_win32\\chromedriver.exe");
 
