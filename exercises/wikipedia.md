@@ -17,7 +17,7 @@ Include the code of the walker and the snapshot in this document.
 ```java
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,8 +36,8 @@ public class TestSelenium {
     private static String lastUrl;
     private static String newUrl;
 
-    @BeforeAll
-    public static void setUp(){
+    @BeforeEach
+    public void setUp(){
 
         listPages = new HashSet<>();
 
@@ -56,7 +56,7 @@ public class TestSelenium {
     }
 
     @Test
-    public void testRandomNavigate(){
+    public void testSelenium(){
         // Go to wikipedia
         newUrl = "https://en.wikipedia.org/";
         webDriver.navigate().to(newUrl);
