@@ -48,14 +48,16 @@ public class TestSORPage {
             WebElement button3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
             button3.click();
 
-            SummaryPage page = new SummaryPage(webDriver);
             WebElement span3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
-            assertEquals("rgba(0, 123, 255, 1)", span3.getCssValue("background-color"));
-            assertFalse(page.title().trim().isEmpty());
-            assertFalse(page.place().trim().isEmpty());
-            assertFalse(page.description().trim().isEmpty());
+
+            SummaryPage page = new SummaryPage(webDriver);
+            assertTrue(page.title().trim().isEmpty());
+            assertTrue(page.place().trim().isEmpty());
+            assertTrue(page.description().trim().isEmpty());
+            assertNotEquals("rgba(0, 123, 255, 1)", span3.getCssValue("background-color"));
+
         } catch (ElementNotInteractableException e) {
-            fail("Impossible to click on span '3'.");
+            fail("Impossible to click on button '3'.");
         }
 
         webDriver.quit();
