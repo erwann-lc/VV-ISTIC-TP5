@@ -43,23 +43,17 @@ public class TestSORPage {
     @Test
     public void testClickButton3WithEmptyFields() {
         webDriver.navigate().to("http://localhost:4200/create");
-
         try {
             WebElement button3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
             button3.click();
-
-            WebElement span3 = webDriver.findElement(By.xpath("//span[contains(text(), '3')]"));
-
             SummaryPage page = new SummaryPage(webDriver);
             assertTrue(page.title().trim().isEmpty());
             assertTrue(page.place().trim().isEmpty());
             assertTrue(page.description().trim().isEmpty());
-            assertNotEquals("rgba(0, 123, 255, 1)", span3.getCssValue("background-color"));
-
+            assertNotEquals("rgba(0, 123, 255, 1)", button3.getCssValue("background-color"));
         } catch (ElementNotInteractableException e) {
             fail("Impossible to click on button '3'.");
         }
-
         webDriver.quit();
     }
 }
